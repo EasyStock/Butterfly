@@ -1,7 +1,7 @@
 # coding=utf-8
 '''
 @Date: 2020-05-03 15:46:14
-@LastEditTime: 2020-05-03 22:21:43
+@LastEditTime: 2020-05-09 16:37:23
 @Author: yuchonghuang@sina.cn
 '''
 
@@ -27,7 +27,7 @@ if __name__ == "__main__":
     res = ToSplitRawDataAndCreateIndex()
     fileList = res.values()
     ToConverHTMLToXlSX(fileList)
-    res = ToReadAllXLSXData()
-    for d in res:
-        print(d, res[d])
-        input()
+    # res = ToReadAllXLSXData()
+    # for d in res:
+    #     print(d, res[d])
+    #     input()
