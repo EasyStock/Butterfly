@@ -1,7 +1,7 @@
 # coding=utf-8
 '''
 @Date: 2020-05-03 20:36:42
-@LastEditTime: 2020-05-03 22:10:09
+@LastEditTime: 2020-05-09 17:00:57
 @Author: yuchonghuang@sina.cn
 '''
 
@@ -69,10 +69,10 @@ def ToReadAllXLSXData(folder,since = None,lastN = None):
     pool.close()
     pool.join()
     endTime = time.time()
-    print('ReadAllMergedDailyData cost:%s, total: %d' % ((endTime - begin_time), len(dataFrames)))
+    print('ToReadAllXLSXData cost:%s, total: %d' % ((endTime - begin_time), len(dataFrames)))
     ret = {}
     for item in dataFrames:
         ret.update(item.get())
     endTime1 = time.time()
-    print('ReadAllMergedDailyData to dict:%s' % (endTime1 - endTime))
+    print('ToReadAllXLSXData to dict:%s' % (endTime1 - endTime))
     return ret
