@@ -1,7 +1,7 @@
 # coding=utf-8
 '''
 @Date: 2020-05-03 15:46:14
-@LastEditTime: 2020-05-23 21:58:08
+@LastEditTime: 2020-05-23 22:21:04
 @Author: yuchonghuang@sina.cn
 '''
 
@@ -43,13 +43,12 @@ def ToWriteBanKuaiReport():
     return BanKuaiReport.WrietBanKuaiReport(destFolder)
     
 if __name__ == "__main__":
-    # allDailyFiles = ToSplitRawDataAndCreateIndex()
-    # ToConverHTMLToXlSX(allDailyFiles)
+    allDailyFiles = ToSplitRawDataAndCreateIndex()
+    ToConverHTMLToXlSX(allDailyFiles)
     ToWriteBanKuaiReport()
 
     # allDailyDataFrames = ToReadAllXLSXData(sinceDate='2019-05-14')
     # mergedDict = ToMergeDailyData(allDailyDataFrames,destFolder_MergeData)
-    # print(mergedDict)
-    # input()
-    # CalculateMarketHotWithFolder()
+
+    CalculateMarketHotWithFolder()
     
