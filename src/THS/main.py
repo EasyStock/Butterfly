@@ -1,7 +1,7 @@
 # coding=utf-8
 '''
 @Date: 2020-05-03 15:46:14
-@LastEditTime: 2020-05-23 22:21:04
+@LastEditTime: 2020-06-01 20:15:25
 @Author: yuchonghuang@sina.cn
 '''
 
@@ -50,5 +50,6 @@ if __name__ == "__main__":
     # allDailyDataFrames = ToReadAllXLSXData(sinceDate='2019-05-14')
     # mergedDict = ToMergeDailyData(allDailyDataFrames,destFolder_MergeData)
 
-    CalculateMarketHotWithFolder()
+    CalculateMarketHotWithFolder() 
     
+ 

@@ -1,7 +1,7 @@
 # coding=utf-8
 '''
 @Date: 2020-05-24 20:22:50
-@LastEditTime: 2020-05-24 22:52:42
+@LastEditTime: 2020-06-05 20:29:48
 @Author: yuchonghuang@sina.cn
 '''
 
@@ -22,6 +22,7 @@ class CAdvanceFilterBase(object):
     def Filter(self, stockID, dataFrame, nextFilter = None):
         res = self.FilterCurrentOnly(stockID, dataFrame)
         self.filterResult['FilterResult'] = res
+        self.filterResult['stockID'] = stockID
         self.callStack.append(self.filterResult)
         if res == False :
             return False
@@ -42,7 +43,7 @@ class CAdvanceFilterBase(object):
             raise Exception('FilterNext stockID is None')
         
         if nextFilter is None:
-            return (True,{}) #filterResult, callStack
+            return True #filterResult, callStack
         
         if isinstance(nextFilter,(list, tuple)) == False:
             raise Exception('nextFilter should be a list or tuple!')
@@ -52,6 +53,6 @@ class CAdvanceFilterBase(object):
             filter_.filterResult['FilterResult'] = res
             self.callStack.append(filter_.filterResult)
             if res == False:
-                return(res,)
+                return res
             else:
                 continue

@@ -1,7 +1,7 @@
 # coding=utf-8
 '''
 @Date: 2020-05-24 20:22:50
-@LastEditTime: 2020-05-24 22:43:19
+@LastEditTime: 2020-05-25 17:51:15
 @Author: yuchonghuang@sina.cn
 '''
 
@@ -15,6 +15,7 @@ class CSimpleFilterBase(object):
     def Filter(self, stockID, dataFrame, nextFilter = None):
         res = self.FilterCurrentOnly(stockID, dataFrame)
         self.filterResult['FilterResult'] = res
+        self.filterResult['stockID'] = stockID
         self.callStack.append(self.filterResult)
         if res == False :
             return False
@@ -35,7 +36,7 @@ class CSimpleFilterBase(object):
             raise Exception('FilterNext stockID is None')
         
         if nextFilter is None:
-            return (True,{}) #filterResult, callStack
+            return True #filterResult, callStack
         
         if isinstance(nextFilter,(list, tuple)) == False:
             raise Exception('nextFilter should be a list or tuple!')
@@ -45,6 +46,6 @@ class CSimpleFilterBase(object):
             filter_.filterResult['FilterResult'] = res
             self.callStack.append(filter_.filterResult)
             if res == False:
-                return(res,)
+                return res
             else:
                 continue

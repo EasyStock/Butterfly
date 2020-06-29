@@ -1,7 +1,7 @@
 # coding=utf-8
 '''
 @Date: 2020-05-20 22:35:25
-@LastEditTime: 2020-05-23 21:48:23
+@LastEditTime: 2020-06-10 21:26:45
 @Author: yuchonghuang@sina.cn
 '''
 import pandas as pd
@@ -107,7 +107,7 @@ def printDataFrame(key, df):
     print(df.mean())
 
     print("\n\n\n=============分为数 %s================"%(key))
-    print(df.quantile([0.05,0.1, 0.5, 0.9, 0.95,0.98]))
+    print(df.quantile([0.05,0.08,0.1, 0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.98]))
     fileName = '/Volumes/Data/StockAssistant/EasyStock/TradingData/%s.xlsx'%(key)
     df.to_excel(fileName, encoding="utf_8_sig", index=False)
 
