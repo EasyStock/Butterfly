@@ -19,13 +19,13 @@ KW_MA240 = '240MA'
 KW_Close = '收盘价'
 UNKNOWN_VALUE = 99999.00
 
-KW_greaterThanMA5 = '大于MA5'
-KW_greaterThanMA10 = '大于MA10'
-KW_greaterThanMA20 = '大于MA20'
-KW_greaterThanMA30 = '大于MA30'
-KW_greaterThanMA60 = '大于MA60'
-KW_greaterThanMA120 = '大于MA120'
-KW_greaterThanMA240 = '大于MA240'
+KW_greaterThanMA5 = '大于MA5率'
+KW_greaterThanMA10 = '大于MA10率'
+KW_greaterThanMA20 = '大于MA20率'
+KW_greaterThanMA30 = '大于MA30率'
+KW_greaterThanMA60 = '大于MA60率'
+KW_greaterThanMA120 = '大于MA120率'
+KW_greaterThanMA240 = '大于MA240率'
 KW_Total = '总数'
 KW_date = '日期'
 KW_STOCK_ID = '股票代码'
@@ -45,6 +45,16 @@ class MakrketHot(object):
             key:res.shape[0]
         }
 
+    def _GetRatioOf(self, df, column1, column2, key):
+        totalSize = df.shape[0]
+        if totalSize == 0:
+            return {key:0.0}
+        res = df[df[column1] > df[column2]]
+        ratio= round(float(1.0*res.shape[0]/df.shape[0]),2)
+        return {
+            key:ratio
+        }
+
     def _FilterStockIDBy(self, df, reg ='^60'):
         res = df[df[KW_STOCK_ID].str.contains(reg)]
         return res
@@ -55,13 +65,13 @@ class MakrketHot(object):
         res[KW_Total] = size_all
         res[KW_date] = date
         df1 = pd.DataFrame(df, columns=(KW_Close,KW_MA5,KW_MA10,KW_MA20, KW_MA30, KW_MA60, KW_MA120, KW_MA240),copy = True,dtype = float) 
-        res.update(self._GetCountOf(df1, KW_Close, KW_MA5, KW_greaterThanMA5))
-        res.update(self._GetCountOf(df1, KW_Close, KW_MA10, KW_greaterThanMA10))
-        res.update(self._GetCountOf(df1, KW_Close, KW_MA20, KW_greaterThanMA20))
-        res.update(self._GetCountOf(df1, KW_Close, KW_MA30, KW_greaterThanMA30))
-        res.update(self._GetCountOf(df1, KW_Close, KW_MA60, KW_greaterThanMA60))
-        res.update(self._GetCountOf(df1, KW_Close, KW_MA120, KW_greaterThanMA120))
-        res.update(self._GetCountOf(df1, KW_Close, KW_MA240, KW_greaterThanMA240))
+        res.update(self._GetRatioOf(df1, KW_Close, KW_MA5, KW_greaterThanMA5))
+        res.update(self._GetRatioOf(df1, KW_Close, KW_MA10, KW_greaterThanMA10))
+        res.update(self._GetRatioOf(df1, KW_Close, KW_MA20, KW_greaterThanMA20))
+        res.update(self._GetRatioOf(df1, KW_Close, KW_MA30, KW_greaterThanMA30))
+        res.update(self._GetRatioOf(df1, KW_Close, KW_MA60, KW_greaterThanMA60))
+        res.update(self._GetRatioOf(df1, KW_Close, KW_MA120, KW_greaterThanMA120))
+        res.update(self._GetRatioOf(df1, KW_Close, KW_MA240, KW_greaterThanMA240))
         return res
         
     def ReadFromFile(self, fileName):
@@ -152,10 +162,29 @@ def CalculateMarketHotWithFolder_Multi(folder):
     df = pd.DataFrame(res[KE_ZHONGXIAO],columns=columns)
     printDataFrame(KE_ZHONGXIAO, df)
 
+def Draw():
+    fileName = '/Volumes/Data/StockAssistant/EasyStock/TradingData/主  板.xlsx'
+    df = pd.read_excel(fileName, index_col=None, encoding='utf_8_sig')
+    df1 = pd.DataFrame()
+    import numpy as np
+    df1['MA5'] = df[KW_greaterThanMA5]/df[KW_Total]
+    import matplotlib.pyplot as plt
+    x = np.linspace(0, 500, 51)
+    print(x)
+    plt.figure()
+    ys = [0.02, 0.05, 0.1, 0.2, 0.5, 0.8, 0.9,0.95, 0.98]
+    for y in ys:
+        plt.axhline(y=y,ls="--",c="green")#添加垂直直线
+        
+
+    plt.plot(df1,)
+
+    plt.show()
+
 if __name__ == "__main__":
     folder = '/Volumes/Data/StockAssistant/EasyStock/TradingData/OutData/股票/Daily/'
     CalculateMarketHotWithFolder_Multi(folder)
-    # fileName = '/Volumes/Data/StockAssistant/EasyStock/TradingData/OutData/股票/Daily/2020/Q2/2020-05-15.xlsx'
+    # fileName = '/Volumes/Data/StockAssistant/EasyStock/TradingData/OutData/股票/Daily/2020/Q3/2020-09-04.xlsx'
     # mak = MakrketHot()
     # mak.ReadFromFile(fileName)
-    
+    #Draw()
