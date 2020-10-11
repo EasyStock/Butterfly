@@ -5,3 +5,13 @@
 @Author: yuchonghuang@sina.cn
 '''
 
+'''
+visual studio code extensions:
+1. TabNine
+2. python
+3. Indent-Rainbow
+4. rest client
+5. prettier
+
+'''
+

@@ -118,7 +118,7 @@ def printDataFrame(key, df):
 
     print("\n\n\n=============分为数 %s================"%(key))
     print(df.quantile([0.05,0.08,0.1, 0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.98]))
-    fileName = '/Volumes/Data/StockAssistant/EasyStock/TradingData/%s.xlsx'%(key)
+    fileName = '/Volumes/Data/Code/github/TradingData/%s.xlsx'%(key)
     df.to_excel(fileName, encoding="utf_8_sig", index=False)
 
 def CalculateMarketHotWithFolder_Multi(folder):
@@ -163,7 +163,7 @@ def CalculateMarketHotWithFolder_Multi(folder):
     printDataFrame(KE_ZHONGXIAO, df)
 
 def Draw():
-    fileName = '/Volumes/Data/StockAssistant/EasyStock/TradingData/主  板.xlsx'
+    fileName = '/Volumes/Data/Code/github/TradingData/主  板.xlsx'
     df = pd.read_excel(fileName, index_col=None, encoding='utf_8_sig')
     df1 = pd.DataFrame()
     import numpy as np

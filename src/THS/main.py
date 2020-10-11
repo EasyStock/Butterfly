@@ -12,10 +12,10 @@ import MergeDailyData
 import MarketHot
 import BanKuaiReport
 
-srcFolder = '/Volumes/Data/StockAssistant/EasyStock/TradingData/RawData/股票'
-srcTempFolder = '/Volumes/Data/StockAssistant/EasyStock/TradingData/临时数据/股票/'
-destFolder = '/Volumes/Data/StockAssistant/EasyStock/TradingData/OutData/股票/Daily/'
-destFolder_MergeData = '/Volumes/Data/StockAssistant/EasyStock/TradingData/OutData/股票/Merged/'
+srcFolder = '/Volumes/Data/Code/github/TradingData/RawData/股票'
+srcTempFolder = '/Volumes/Data/Code/github/TradingData/临时数据/股票/'
+destFolder = '/Volumes/Data/Code/github/TradingData/OutData/股票/Daily/'
+destFolder_MergeData = '/Volumes/Data/Code/github/TradingData/OutData/股票/Merged/'
 
 allDailyFiles = None #{date:file}
 allDailyDataFrames = None #{date:DataFrame}

@@ -157,7 +157,7 @@ def WrietBanKuaiReport(srcFolder):
     r.WirteToFile('/tmp/aa.txt')
 
 if __name__ == "__main__":
-    srcFolder = '/Volumes/Data/StockAssistant/EasyStock/TreaderAnalysis/data/output/股票/每日数据'
-    srcFolder2 = '/Volumes/Data/StockAssistant/EasyStock/TradingData/OutData/股票/Daily'
+    srcFolder = '/Volumes/Data/Code/github/TreaderAnalysis/data/output/股票/每日数据'
+    srcFolder2 = '/Volumes/Data/Code/github/TradingData/OutData/股票/Daily'
     WrietBanKuaiReport(srcFolder)
     
